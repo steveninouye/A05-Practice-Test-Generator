@@ -12,6 +12,8 @@
    "devDependencies": {},
    "scripts": {
       "initialize": "bundle install && npm install",
+      "generate": "ruby ./generator.rb",
+      "reset-test-count": "ruby reset.rb",
       "test": "live-server"
    },
    "repository": {
