@@ -39,5 +39,5 @@ npm test
 Run
 
 ```
-ruby reset.rb
+npm run reset-test-count
 ```
