@@ -1,6 +1,7 @@
 # Practice test generator for App Academy built from:
 
 https://github.com/souiukoto/javascript-test-generator
+
 This Test Generator keeps track off all the problems you've done in the past and will give priority to questions that have been attempted to the least when generating tests;
 
 ## Initialization
