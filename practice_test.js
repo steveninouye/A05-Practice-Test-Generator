@@ -64,7 +64,7 @@ Array.prototype.dups = function() {
 // # Write a monkey patch of binary search:
 // # E.g. [1, 2, 3, 4, 5, 7].my_bsearch(5) => 4
 
-Array.prototype.myBsearch = function(target, func) {
+Array.prototype.myBsearch = function(target) {
    if (this.length === 0 || (this.length === 1 && this[0] != target)) {
       return null;
    }
@@ -73,14 +73,14 @@ Array.prototype.myBsearch = function(target, func) {
    if (el === target) {
       return midpt;
    } else if (el < target) {
-      let prev = this.slice(midpt + 1).myBsearch(target, func);
+      let prev = this.slice(midpt + 1).myBsearch(target);
       if (prev === null) {
          return null;
       } else {
          return midpt + 1 + prev;
       }
    } else {
-      return this.slice(0, midpt).myBsearch(target, func);
+      return this.slice(0, midpt).myBsearch(target);
    }
 };
 
@@ -115,18 +115,43 @@ Array.prototype.rotate = function(num = 1) {
    }
 };
 
-function transpose(arr) {}
+function transpose(arr) {
+   let result = [];
+   arr.forEach((array, idx1) => {
+      array.forEach((el, idx2) => {
+         if (idx1 === 0) result.push([]);
+         result[idx2].push(el);
+      });
+   });
+   return result;
+}
 
-Array.prototype.flatten = function() {};
+Array.prototype.flatten = function() {
+   return this.reduce(
+      (ac, el) =>
+         el instanceof Array ? ac.concat(el.flatten()) : ac.concat([el]),
+      []
+   );
+};
 
 // Write a method that returns the factors of a number in ascending order.
 
-function factors(num) {}
+function factors(num) {
+   let result = [];
+   for (let i = 1; i <= num; i++) {
+      if (num % i === 0) {
+         result.push(i);
+      }
+   }
+   return result;
+}
 
 // primes(num) returns an array of the first "num" primes.
 // You may wish to use an is_prime helper method.
 
-function primes(num) {}
+function primes(num) {
+   
+}
 
 // write String.prototype.mySlice. It should take a start index and an
 // (optional) end index.

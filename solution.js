@@ -55,7 +55,7 @@ Array.prototype.dups = function() {
   return dups;
 }
 
-Array.prototype.myBsearch = function(target, func) {
+Array.prototype.myBsearch = function(target) {
   if (this.length === 0) return null;
   const mid = Math.floor(this.length / 2);
 
