@@ -8,8 +8,7 @@ This Test Generator keeps track off all the problems you've done in the past and
 Run
 
 ```
-npm run initialize
-# this will run a npm script to set you up
+npm run initialize  # this will run a npm script to set you up
 ```
 
 ## Creating Tests
@@ -17,8 +16,7 @@ npm run initialize
 Run
 
 ```
-npm run generate
-# this will open a prompt for you to choose how many probles you want of each
+npm run generate # this will open a prompt for you to choose how many probles you want of each
 ```
 
 ## Running Tests
@@ -26,8 +24,7 @@ npm run generate
 Run
 
 ```
-npm test
-# This will open the test results in your browser window with auto-reload
+npm test  # This will open the test results in your browser window with auto-reload
 ```
 
 ## Resetting Accrued Number of Attempts
