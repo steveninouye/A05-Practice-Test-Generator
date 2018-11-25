@@ -1,0 +1,27 @@
+{
+   "name": "a05-practice-test-generator",
+   "version": "1.0.0",
+   "description": "App Academy Practice Test Generator",
+   "main": "SpecRunner.html",
+   "directories": {
+      "lib": "lib"
+   },
+   "dependencies": {
+      "live-server": "^1.2.0"
+   },
+   "devDependencies": {},
+   "scripts": {
+      "initialize": "bundle install && npm install",
+      "test": "live-server"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/steveninouye/A05-Practice-Test-Generator.git"
+   },
+   "author": "Steven Inouye",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/steveninouye/A05-Practice-Test-Generator/issues"
+   },
+   "homepage": "https://github.com/steveninouye/A05-Practice-Test-Generator#readme"
+}
