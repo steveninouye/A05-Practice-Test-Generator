@@ -106,7 +106,6 @@ Array.prototype.twoSum = function() {
 };
 
 Array.prototype.rotate = function(num = 1) {
-   console.log(this);
    let mod = num % this.length;
    if (mod >= 0) {
       return this.slice(mod).concat(this.slice(0, mod));
@@ -413,7 +412,7 @@ Array.prototype.quickSort = function(func) {
 // jumble_sort("hello", ['o', 'l', 'h', 'e']) => 'ollhe'
 
 function jumbleSort(str, alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')) {
-   if (!(str instanceof Array)) str = str.split('');
+   str = str.split('');
    return alphabet.reduce(
       (acc, ltr) => acc + str.filter((el) => el === ltr).join(''),
       ''
@@ -423,7 +422,18 @@ function jumbleSort(str, alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')) {
 // Write a method that capitalizes each word in a string like a book title
 // Do not capitalize words like 'a', 'and', 'of', 'over' or 'the'
 
-function titleize(title) {}
+function titleize(title) {
+   let words = ['a', 'and', 'of', 'over', 'the'];
+   title = title.split(' ');
+   return title
+      .reduce((acc, word, i) => {
+         if (!words.includes(word) || i === 0) {
+            word = word[0].toUpperCase() + word.slice(1);
+         }
+         return acc.concat([word]);
+      }, [])
+      .join(' ');
+}
 
 // Back in the good old days, you used to be able to write a darn near
 // uncrackable code by simply taking each letter of a message and incrementing it
@@ -435,25 +445,75 @@ function titleize(title) {}
 // To get an array of letters "a" to "z", you may use `("a".."z").to_a`. To find
 // the position of a letter in the array, you may use `Array#find_index`.
 
-function caesarCipher(str, shift) {}
+function caesarCipher(str, shift) {
+   let letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+   return str.split('').reduce((acc, ltr) => {
+      let idx = letters.indexOf(ltr);
+      if (idx === -1) {
+         return acc + ltr;
+      } else if (idx + shift > 25) {
+         return acc + letters[idx + shift - 26];
+      } else {
+         return acc + letters[idx + shift];
+      }
+   }, '');
+}
 
 // Write a String#symmetric_substrings method that returns an array of substrings
 // that are palindromes, e.g. "cool".symmetric_substrings => ["oo"]
 // Only include substrings of length > 1.
 
-String.prototype.symmetricSubstrings = function() {};
+String.prototype.symmetricSubstrings = function() {
+   let result = [];
+   for (let i = 0; i < this.length - 1; i++) {
+      for (let j = i + 2; j < this.length + 1; j++) {
+         let word = this.slice(i, j);
+
+         if (isPalindrome(word)) {
+            result.push(word);
+         }
+      }
+   }
+   return result.sort();
+};
+
+function isPalindrome(str) {
+   str2 = str.split('').slice();
+   return str.split('').join('') === str2.reverse().join('');
+}
 
 // Returns an array of all the subwords of the string that appear in the
 // dictionary argument. The method does NOT return any duplicates.
 
-String.prototype.realWordsInString = function(dictionary) {};
+String.prototype.realWordsInString = function(dictionary) {
+   return dictionary.reduce((acc, word) => {
+      if (this.indexOf(word) !== -1) {
+         acc.push(word);
+      }
+      return acc;
+   }, []);
+};
 
 // Write a method that translates a sentence into pig latin. You may want a helper method.
 // 'apple' => 'appleay'
 // 'pearl' => 'earlpay'
 // 'quick' => 'ickquay'
 
-function piglatinify(sentence) {}
+function pigLatinify(sentence) {
+   let vowels = 'aeiou'.split('');
+   let words = sentence.split(' ');
+   return words
+      .reduce((acc, word) => {
+         while (!vowels.includes(word[0])) {
+            word = word.slice(1) + word.slice(0, 1);
+         }
+         if (word[0] === 'u' && word[-1] === 'q') {
+            word = word.slice(1) + word.slice(0, 1);
+         }
+         return acc.concat([`${word}ay`]);
+      }, [])
+      .join(' ');
+}
 
 // Write a method that doubles each element in an array
 

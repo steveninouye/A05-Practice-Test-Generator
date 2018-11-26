@@ -3,6 +3,6 @@
 // 'pearl' => 'earlpay'
 // 'quick' => 'ickquay'
 
-function piglatinify(sentence) {
+function pigLatinify(sentence) {
 
 }
