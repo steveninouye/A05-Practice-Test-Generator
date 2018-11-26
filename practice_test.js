@@ -150,44 +150,107 @@ function factors(num) {
 // You may wish to use an is_prime helper method.
 
 function primes(num) {
-   
+   let result = [];
+   for (let i = 2; result.length < num; i++) {
+      if (isPrime(i)) {
+         result.push(i);
+      }
+   }
+   return result;
+}
+
+function isPrime(num) {
+   for (let i = 2; i <= Math.ceil(num / 2); i++) {
+      if (num % i === 0) return false;
+   }
+   return true;
 }
 
 // write String.prototype.mySlice. It should take a start index and an
 // (optional) end index.
 
-String.prototype.mySlice = function() {};
+String.prototype.mySlice = function(start, end) {
+   if (start > end) return '';
+   end = end || this.length;
+   let result = '';
+   for (let i = start; i < end; i++) {
+      if (this[i]) result += this[i];
+   }
+   return result;
+};
 
 // Write a recursive method that returns all of the permutations of an array
 
-function permutations(array) {}
+function permutations(array) {
+   if (array.length <= 1) return [array];
+   let el = array.pop();
+   let prev = permutations(array);
+   let result = [];
+   prev.forEach((e) => {
+      for (let i = 0; i <= prev.length; i++) {
+         let temp = e.slice();
+         temp.splice(i, 0, el);
+         result.push(temp);
+      }
+   });
+   return result.sort();
+}
 
 // Write a recursive method that returns the sum of all elements in an array
 
-function recSum(nums) {}
+function recSum(nums) {
+   if (nums.length === 0) return 0;
+   let el = nums.pop();
+   return el + recSum(nums);
+}
 
 // Using recursion and the is_a? method,
 // write an Array#deep_dup method that will perform a "deep" duplication of the interior arrays.
 
-function deepDup(arr) {}
+function deepDup(arr) {
+   return arr.map((el) => (el instanceof Array ? deepDup(el) : el));
+}
 
 // return the sum of the first n even numbers recursively. Assume n > 0
 
-function firstEvenNumbersSum(n) {}
+function firstEvenNumbersSum(n) {
+   if (n === 0) return 0;
+   return 2 * n + firstEvenNumbersSum(n - 1);
+}
 
 // return b^n recursively. Your solution should accept negative values
 // for n
 
-function exponent(b, n) {}
+function exponent(b, n) {
+   if (n === 0) return 1;
+   if (n > 0) {
+      return b * exponent(b, n - 1);
+   } else {
+      return (1 / b) * exponent(b, n + 1);
+   }
+}
 
 // returns all subsets of an array
 
-function subsets(array) {}
+function subsets(array) {
+   if (array.length === 0) return [[]];
+   let el = array.pop();
+   let prev = subsets(array);
+   let dup = prev.slice();
+   dup = dup.map((e) => e.slice().concat([el]));
+   return prev.concat(dup);
+}
 
 // Implement a method that finds the sum of the first n
 // fibonacci numbers recursively. Assume n > 0
 
-function fibsSum(n) {}
+function fibsSum(n) {
+   if (n === 0) return 0;
+   if (n === 1) return 1;
+   let prev = fibsSum(n - 1);
+   let prev2 = fibsSum(n - 2);
+   return prev + prev2 + 1;
+}
 
 // Write a method, `digital_root(num)`. It should Sum the digits of a positive
 // integer. If it is greater than 10, sum the digits of the resulting number.
@@ -197,7 +260,15 @@ function fibsSum(n) {}
 // You may wish to use a helper function, `digital_root_step(num)` which performs
 // one step of the process.
 
-function digitalRoot(num) {}
+function digitalRoot(num) {
+   if (num < 10) return num;
+   let result = 0;
+   while (num > 0) {
+      result += num % 10;
+      num = Math.floor(num / 10);
+   }
+   return digitalRoot(result);
+}
 
 // Write a recursive method that takes in a base 10 number n and
 // converts it to a base b number. Return the new number as a string
@@ -205,14 +276,27 @@ function digitalRoot(num) {}
 // E.g. base_converter(5, 2) == "101"
 // base_converter(31, 16) == "1f"
 
-function baseConverter(num, b) {}
+function baseConverter(num, b) {
+   if (num === 0) return '';
+   let letters = '0123456789abcdefghijklmnopqrstuvwxyz'.split('');
+   return baseConverter(Math.floor(num / b), b) + letters[num % b];
+}
 
 // Write a recursive function that returns the prime factorization of
 // a given number. Assume num > 1
 //
 // prime_factorization(12) => [2,2,3]
 
-function primeFactorization(num) {}
+function primeFactorization(num) {
+   let result = [];
+   for (let i = 2; num > 1; i++) {
+      while (num % i === 0) {
+         result.push(i);
+         num /= i;
+      }
+   }
+   return result;
+}
 
 // Write a recursive method that takes in a string to search and a key string.
 // Return true if the string contains all of the characters in the key
@@ -221,25 +305,104 @@ function primeFactorization(num) {}
 // string_include_key?("cadbpc", "abc") => true
 // string_include_key("cba", "abc") => false
 
-function stringIncludeKey(string, key) {}
+function stringIncludeKey(string, key) {
+   if (key.length === 0) return true;
+   let ltr = key[0];
+   let idx = string.indexOf(ltr);
+   if (idx === -1) {
+      return false;
+   } else {
+      return stringIncludeKey(string.slice(idx + 1), key.slice(1));
+   }
+}
 
 // Write a recursive method that returns the first "num" factorial numbers.
 // Note that the 1st factorial number is 0!, which equals 1. The 2nd factorial
 // is 1!, the 3rd factorial is 2!, etc.
 
-function factorialsRec(num) {}
+function factorialsRec(num) {
+   if (num === 1) {
+      return [1];
+   }
+   let result = 1;
+   for (let i = 1; i < num; i++) {
+      result *= i;
+   }
+   return factorialsRec(num - 1).concat([result]);
+}
 
-Array.prototype.bubbleSort = function(func) {};
+Array.prototype.bubbleSort = function(func) {
+   func =
+      func ||
+      function(x, y) {
+         if (x > y) return 1;
+         return -1;
+      };
+   let dup = this.slice();
+   let sorted = false;
+   while (!sorted) {
+      sorted = true;
+      dup.forEach((el1, i) => {
+         if (i !== dup.length - 1) {
+            let j = i + 1;
+            if (func(el1, dup[j]) === 1) {
+               [dup[i], dup[j]] = [dup[j], dup[i]];
+               sorted = false;
+            }
+         }
+      });
+   }
+   return dup;
+};
 
 // Write an Array#merge_sort method; it should not modify the original array.
 
-Array.prototype.mergeSort = function(func) {};
+Array.prototype.mergeSort = function(func) {
+   if (this.length <= 1) return this;
+   func =
+      func ||
+      function(x, y) {
+         if (x > y) return 1;
+         return -1;
+      };
+   let midpt = Math.floor(this.length / 2);
+   let left = this.slice(0, midpt).mergeSort(func);
+   let right = this.slice(midpt).mergeSort(func);
+   return left.merge(right, func);
+};
 
-Array.prototype.merge = function(arr, func) {};
+Array.prototype.merge = function(arr, func) {
+   let result = [];
+   while (this.length > 0 && arr.length > 0) {
+      if (func(this[0], arr[0]) === 1) {
+         result.push(arr.shift());
+      } else {
+         result.push(this.shift());
+      }
+   }
+   return result.concat(this).concat(arr);
+};
 
 // Write a monkey patch of quick sort that accepts a callback
 
-Array.prototype.quickSort = function(func) {};
+Array.prototype.quickSort = function(func) {
+   let dup = this.slice();
+   if (dup.length <= 1) return dup;
+   func =
+      func ||
+      function(x, y) {
+         if (x > y) return 1;
+         return -1;
+      };
+   let midpt = Math.floor(dup.length / 2);
+   let element = dup.shift();
+   let left = dup.filter((el) => func(element, el) === 1);
+   let right = dup.filter((el) => func(element, el) !== 1);
+   return left
+      .quickSort(func)
+      .concat([element])
+      .concat(right.quickSort(func));
+};
 
 // Jumble sort takes a string and an alphabet. It returns a copy of the string
 // with the letters re-ordered according to their positions in the alphabet. If
@@ -249,7 +412,13 @@ Array.prototype.quickSort = function(func) {};
 // jumble_sort("hello") => "ehllo"
 // jumble_sort("hello", ['o', 'l', 'h', 'e']) => 'ollhe'
 
-function jumbleSort(str, alphabet = null) {}
+function jumbleSort(str, alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')) {
+   if (!(str instanceof Array)) str = str.split('');
+   return alphabet.reduce(
+      (acc, ltr) => acc + str.filter((el) => el === ltr).join(''),
+      ''
+   );
+}
 
 // Write a method that capitalizes each word in a string like a book title
 // Do not capitalize words like 'a', 'and', 'of', 'over' or 'the'

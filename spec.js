@@ -530,10 +530,7 @@ describe('#jumbleSort', () => {
    });
 
    it('sorts by a reversed alphabet', () => {
-      reverse = 'abcdefghijklmnopqrstuvwxyz'
-         .split('')
-         .reverse()
-         .join('');
+      reverse = 'abcdefghijklmnopqrstuvwxyz'.split('').reverse();
       expect(jumbleSort('hello', reverse)).toEqual('ollhe');
    });
 });
