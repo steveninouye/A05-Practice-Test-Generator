@@ -6,9 +6,7 @@ Array.prototype.median = function() {};
 // write myFind(array, callback). It should return the first element for which
 // callback returns true, or undefined if none is found.
 
-const myFind = function(array, callback) {
-   return array.filter((el) => callback(el))[0];
-};
+const myFind = function(array, callback) {};
 
 Array.prototype.myJoin = function(separator) {};
 
