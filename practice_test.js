@@ -1,18 +1,7 @@
 // Write a method that returns the median of elements in an array
 // If the length is even, return the average of the middle two elements
 
-Array.prototype.median = function() {
-   if (this.length === 0) {
-      return null;
-   }
-   let sorted = this.sort();
-   let mid = sorted.length / 2;
-   if (sorted.length % 2 === 0) {
-      return (sorted[mid] + sorted[mid - 1]) / 2;
-   } else {
-      return sorted[Math.floor(mid)];
-   }
-};
+Array.prototype.median = function() {};
 
 // write myFind(array, callback). It should return the first element for which
 // callback returns true, or undefined if none is found.
@@ -21,68 +10,21 @@ const myFind = function(array, callback) {
    return array.filter((el) => callback(el))[0];
 };
 
-Array.prototype.myJoin = function(separator) {
-   // return this.join(separator ? separator : '');
-   separator = separator || '';
-   return this.reduce((acc, el, idx) => {
-      if (idx === this.length - 1) {
-         return acc + el;
-      } else {
-         return acc + el + separator;
-      }
-   }, '');
-};
+Array.prototype.myJoin = function(separator) {};
 
-Array.prototype.myReverse = function() {
-   return this.reduce((acc, el) => {
-      acc.unshift(el);
-      return acc;
-   }, []);
-};
+Array.prototype.myReverse = function() {};
 
 // Write an Array#dups method that will return a hash containing the indices of all
 // duplicate elements. The keys are the duplicate elements; the values are
 // arrays of their indices in ascending order, e.g.
 // [1, 3, 4, 3, 0, 3, 0].dups => { 3 => [1, 3, 5], 0 => [4, 6] }
 
-Array.prototype.dups = function() {
-   let result = {};
-   this.forEach((key, idx) => {
-      if (!result[key]) {
-         result[key] = [];
-      }
-      result[key].push(idx);
-   });
-   this.forEach((key) => {
-      if (result[key].length < 2) {
-         delete result[key];
-      }
-   });
-   return result;
-};
+Array.prototype.dups = function() {};
 
 // # Write a monkey patch of binary search:
 // # E.g. [1, 2, 3, 4, 5, 7].my_bsearch(5) => 4
 
-Array.prototype.myBsearch = function(target) {
-   if (this.length === 0 || (this.length === 1 && this[0] != target)) {
-      return null;
-   }
-   let midpt = Math.floor(this.length / 2);
-   let el = this[midpt];
-   if (el === target) {
-      return midpt;
-   } else if (el < target) {
-      let prev = this.slice(midpt + 1).myBsearch(target);
-      if (prev === null) {
-         return null;
-      } else {
-         return midpt + 1 + prev;
-      }
-   } else {
-      return this.slice(0, midpt).myBsearch(target);
-   }
-};
+Array.prototype.myBsearch = function(target) {};
 
 // Write a method, `Array#two_sum`, that finds all pairs of positions where the
 // elements at those positions sum to zero.
@@ -93,27 +35,9 @@ Array.prototype.myBsearch = function(target) {
 // [0, 2] before [1, 2] (smaller first elements come first)
 // [0, 1] before [0, 2] (then smaller second elements come first)
 
-Array.prototype.twoSum = function() {
-   const result = [];
-   for (let i = 0; i < this.length; i++) {
-      for (let j = i + 1; j < this.length; j++) {
-         if (this[i] + this[j] === 0) {
-            result.push([i, j]);
-         }
-      }
-   }
-   return result;
-};
+Array.prototype.twoSum = function() {};
 
-Array.prototype.rotate = function(num = 1) {
-   console.log(this);
-   let mod = num % this.length;
-   if (mod >= 0) {
-      return this.slice(mod).concat(this.slice(0, mod));
-   } else {
-      return this.slice(mod).concat(this.slice(0, this.length + mod));
-   }
-};
+Array.prototype.rotate = function(num) {};
 
 function transpose(arr) {}
 
