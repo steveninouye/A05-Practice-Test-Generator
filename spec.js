@@ -21,27 +21,6 @@ describe('#median', () => {
    });
 });
 
-describe('myFind', () => {
-   let arr, spy;
-   beforeEach(() => {
-      arr = [1, 2, 3];
-      spy = {
-         callback: (el) => false
-      };
-   });
-
-   const equalsThree = (el) => el === 3;
-   const equalsFour = (el) => el === 4;
-
-   it('calls the callback passed to it', () => {
-      spyOn(spy, 'callback');
-
-      myFind(arr, spy.callback);
-
-      expect(spy.callback).toHaveBeenCalled();
-   });
-});
-
 describe('myJoin', () => {
    beforeEach(() => {
       a = ['a', 'b', 'c', 'd'];
@@ -198,57 +177,6 @@ describe('flatten', () => {
    });
 });
 
-describe('#factors', () => {
-   it('returns the factors of 10 in order', () => {
-      expect(factors(10)).toEqual([1, 2, 5, 10]);
-   });
-
-   it('returns just two factors for primes', () => {
-      expect(factors(13)).toEqual([1, 13]);
-   });
-});
-
-describe('#primes', () => {
-   it('returns first five primes in order', () => {
-      expect(primes(5)).toEqual([2, 3, 5, 7, 11]);
-   });
-
-   it('returns an empty array when asked for zero primes', () => {
-      expect(primes(0)).toEqual([]);
-   });
-});
-
-describe('String.prototype.mySlice', () => {
-   it('slices the string from the start index to the end index', () => {
-      expect('abcd'.mySlice(0, 2)).toEqual('ab');
-   });
-
-   it('slices to the end of the string when no second argument is passed', () => {
-      expect('foobar'.mySlice(3)).toEqual('bar');
-   });
-
-   it('returns an empty string when the first argument is higher', () => {
-      expect('empty!'.mySlice(1, 0)).toEqual('');
-   });
-
-   it("slices to the end of the string when the end index is greater than the string's length", () => {
-      expect('super long string'.mySlice(0, 200)).toEqual('super long string');
-   });
-
-   it("doesn't call `substr`, `slice`, or `substring`", () => {
-      const str = new String("don't you do it!");
-      spyOn(str, 'substr');
-      spyOn(str, 'slice');
-      spyOn(str, 'substring');
-
-      str.mySlice(0);
-
-      expect(str.substr).not.toHaveBeenCalled();
-      expect(str.slice).not.toHaveBeenCalled();
-      expect(str.substring).not.toHaveBeenCalled();
-   });
-});
-
 describe('#permutations', () => {
    it('returns all permutations of an array', () => {
       const array = [1, 2, 3];
@@ -262,17 +190,6 @@ describe('#permutations', () => {
       ];
 
       expect(permutations([1, 2, 3])).toEqual(allPermutations);
-   });
-});
-
-describe('#recSum', () => {
-   it('returns the sums of all elements in an array', () => {
-      arr = [1, 2, 3, 4];
-      expect(recSum(arr)).toEqual(10);
-   });
-
-   it('returns 0 if the array is empty', () => {
-      expect(recSum([])).toEqual(0);
    });
 });
 
@@ -296,29 +213,7 @@ describe('deepDup', () => {
    });
 });
 
-describe('firstEvenNumbersSum', () => {
-   it('Correctly returns the sum of the first even number', () => {
-      expect(firstEvenNumbersSum(1)).toEqual(2);
-   });
 
-   it('Returns the sum of the first n even numbers', () => {
-      expect(firstEvenNumbersSum(6)).toEqual(42);
-   });
-});
-
-describe('exponent', () => {
-   it('correctly handles positive powers', () => {
-      expect(exponent(5, 3)).toEqual(125);
-   });
-
-   it('correctly handles negative powers', () => {
-      expect(exponent(2, -3)).toEqual(1 / 8.0);
-   });
-
-   it('correctly handles 0', () => {
-      expect(exponent(2, 0)).toEqual(1);
-   });
-});
 
 describe('subsets', () => {
    it('Correctly returns all subsets of an array', () => {
@@ -449,6 +344,7 @@ describe('#bubbleSort', () => {
    it('will use a callback if given', () => {
       const descendSort = (x, y) => {
          if (x > y) return -1;
+         if (x === y) return 0;
          return 1;
       };
 
@@ -647,23 +543,6 @@ describe('#pigLatinify', () => {
    });
 });
 
-describe('#doubler', () => {
-   beforeEach(() => {
-      array = [1, 2, 3];
-   });
-
-   it('doubles the elements of the array', () => {
-      expect(doubler(array)).toEqual([2, 4, 6]);
-   });
-
-   it('does not modify the original array', () => {
-      const dupArray = array.slice(0);
-
-      doubler(array);
-
-      expect(array).toEqual(dupArray);
-   });
-});
 
 describe('Array#myReduce', () => {
    let myArray;
@@ -707,87 +586,6 @@ describe('Array#myReduce', () => {
       myArray.myReduce(spy.sum);
 
       expect(myArray.reduce).not.toHaveBeenCalled();
-   });
-});
-
-describe('myEvery', () => {
-   beforeEach(() => {
-      a = [2, 4, 6];
-   });
-
-   it('returns true if all elements match the block', () => {
-      const callback = (x) => x % 2 === 0;
-      expect(a.myEvery(callback)).toBe(true);
-   });
-
-   it('returns false if not all elementes match the block', () => {
-      const callback = (x) => x % 3 === 0;
-      expect(a.myEvery(callback)).toBe(false);
-   });
-});
-
-describe('myFilter', () => {
-   beforeEach(() => {
-      a = [1, 2, 3];
-   });
-
-   it('It correctly selects elements according to the passed in block', () => {
-      const callback = (x) => x > 1;
-      expect(a.myFilter(callback)).toEqual([2, 3]);
-   });
-
-   it('It returns an empty array if there are no matches', () => {
-      const callback = (x) => x === 4;
-      expect(a.myFilter(callback)).toEqual([]);
-   });
-});
-
-describe('myEach', () => {
-   beforeEach(() => {
-      callback = (x) => res.push(2 * x);
-      array = [1, 2, 3];
-   });
-
-   it('it passes each element into a callback', () => {
-      res = [];
-      array.myEach(callback);
-      expect(res).toEqual([2, 4, 6]);
-   });
-
-   it('returns the original array', () => {
-      expect(array.myEach(callback)).toEqual([1, 2, 3]);
-   });
-});
-
-describe('reject', () => {
-   beforeEach(() => {
-      a = [1, 2, 3];
-   });
-
-   it('it returns elements that do not match the passed in block', () => {
-      const callback = (x) => x > 1;
-      expect(a.reject(callback)).toEqual([1]);
-   });
-
-   it('It returns all elements if no elements match the block', () => {
-      const callback = (x) => x === 4;
-      expect(a.reject(callback)).toEqual([1, 2, 3]);
-   });
-});
-
-describe('mySome', () => {
-   beforeEach(() => {
-      a = [1, 2, 3];
-   });
-
-   it('returns true if any number matches the block', () => {
-      const callback = (x) => x > 1;
-      expect(a.mySome(callback)).toBe(true);
-   });
-
-   it('returns false if no elementes match the block', () => {
-      const callback = (x) => x === 4;
-      expect(a.mySome(callback)).toBe(false);
    });
 });
 
