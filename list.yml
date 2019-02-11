@@ -65,67 +65,67 @@ array:
   :problem_file: problems/binary_search.js
   :spec_file: specs/binary_search_spec.js
   :solution_file: solutions/binary_search_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: dups
   :problem_file: problems/dups.js
   :spec_file: specs/dups_spec.js
   :solution_file: solutions/dups_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: factors
   :problem_file: problems/factors.js
   :spec_file: specs/factors_spec.js
   :solution_file: solutions/factors_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: median
   :problem_file: problems/median.js
   :spec_file: specs/median_spec.js
   :solution_file: solutions/median_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: my_find
   :problem_file: problems/my_find.js
   :spec_file: specs/my_find_spec.js
   :solution_file: solutions/my_find_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: my_flatten
   :problem_file: problems/my_flatten.js
   :spec_file: specs/my_flatten_spec.js
   :solution_file: solutions/my_flatten_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: my_join
   :problem_file: problems/my_join.js
   :spec_file: specs/my_join_spec.js
   :solution_file: solutions/my_join_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: my_reverse
   :problem_file: problems/my_reverse.js
   :spec_file: specs/my_reverse_spec.js
   :solution_file: solutions/my_reverse_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: my_rotate
   :problem_file: problems/my_rotate.js
   :spec_file: specs/my_rotate_spec.js
   :solution_file: solutions/my_rotate_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: my_slice
   :problem_file: problems/my_slice.js
   :spec_file: specs/my_slice_spec.js
   :solution_file: solutions/my_slice_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: primes
   :problem_file: problems/primes.js
   :spec_file: specs/primes_spec.js
   :solution_file: solutions/primes_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: transpose
   :problem_file: problems/transpose.js
   :spec_file: specs/transpose_spec.js
   :solution_file: solutions/transpose_solution.js
-  :num_uses: 1
+  :num_uses: 2
 - :name: two_sum
   :problem_file: problems/two_sum.js
   :spec_file: specs/two_sum_spec.js
   :solution_file: solutions/two_sum_solution.js
-  :num_uses: 1
+  :num_uses: 2
 sort:
 - :name: bubble_sort
   :problem_file: problems/bubble_sort.js
